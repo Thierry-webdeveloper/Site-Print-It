@@ -49,8 +49,8 @@ print-it/
 
 ## 🔗 Liens
 
-- [Voir le site en ligne (GitHub Pages)]
-- [Repo GitHub]
+- Voir le site en ligne : https://thierry-webdeveloper.github.io/Site-Print-It/
+- Repo GitHub : https://github.com/Thierry-webdeveloper/Site-Print-It.git
 
 ---
 
