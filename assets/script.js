@@ -21,14 +21,14 @@ const slides = [
 function gererClic(increment) {
 	if (increment === -1) {
 		console.log("clic gauche")
-		alert("Page précédente")			// bloque la page
+//		alert("Page précédente")			// bloque la page
 	} else {
 		console.log("clic droit")
-		alert("Page suivante")
+//		alert("Page suivante")
 	}
 }
 
-// Ajout des Event Listeners sur les flèches
+// Ajout des Event Listeners sur les flèches (étape 2)
 // --- Récupération des éléments ---
 const arrowLeft  = document.querySelector(".arrow_left")
 const arrowRight = document.querySelector(".arrow_right")
@@ -46,3 +46,17 @@ arrowRight.addEventListener("click", function() {
 //arrowLeft.addEventListener("click", function() {
 //    console.log("clic gauche")
 //})
+
+// Générer les bullet points dynamiquement (étape 3)
+// Récupération des éléments
+const dotsContainer = document.querySelector(".dots")
+
+// Génération des dots
+for (let i = 0; i < slides.length ; i++) {
+  const dot = document.createElement("div")
+  dot.classList.add("dot")
+  if (i === 0) {
+    dot.classList.add("dot_selected")
+  }
+  dotsContainer.appendChild(dot)
+}
