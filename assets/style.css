@@ -125,6 +125,7 @@ header {
 /* Gestion des fleches du carrousel */
 #banner .arrow {
 	position: absolute;
+	cursor: pointer;		/* ajout pour coller au visuel de la maquette */
 }
 #banner .arrow_left {
 	left: 10px;
