@@ -1,3 +1,4 @@
+// ── Données ──────────────────────────────────────
 const slides = [
 	{
 		"image":"slide1.jpg",
@@ -17,8 +18,33 @@ const slides = [
 	}
 ]
 
-// --- Fonctions ---
-function gererClic(increment) {
+let currentSlide = 0
+
+// ── Fonctions ─────────────────────────────────────
+// --- Modifier le slide au clic sur les flèches ---
+function updateSlide(index) {
+  const bannerImg = document.querySelector(".banner-img")
+  const bannerText = document.querySelector("#banner p")
+  const allDots = document.querySelectorAll(".dot")
+
+  bannerImg.src = "./assets/images/slideshow/" + slides[index].image	// mettre à jour l'image
+  bannerText.innerHTML = slides[index].tagLine							// mettre à jour le texte
+  																		// mettre à jour le dot actif
+  allDots[currentSlide].classList.remove("dot_selected") 					// -> ancien
+  allDots[index].classList.add("dot_selected")           					// -> nouveau
+}
+
+// --- Gestion du clic sur les flèches gauche et droite ---
+function handleClick(increment) {
+	let newIndex = currentSlide + increment
+	if (newIndex < 0) {
+		//console.log(slides.length)
+		newIndex = slides.length - 1
+	} else if (newIndex >= slides.length) {
+		newIndex = 0
+	}
+	updateSlide(newIndex)
+	currentSlide = newIndex
 	if (increment === -1) {
 		console.log("clic gauche")
 //		alert("Page précédente")			// bloque la page
@@ -28,18 +54,18 @@ function gererClic(increment) {
 	}
 }
 
-// Ajout des Event Listeners sur les flèches (étape 2)
-// --- Récupération des éléments ---
+// ── Récupération des éléments ─────────────────────
 const arrowLeft  = document.querySelector(".arrow_left")
 const arrowRight = document.querySelector(".arrow_right")
+const dotsContainer = document.querySelector(".dots")
 
-// --- Event listeners ---
+// ── Event listeners ───────────────────────────────
 arrowLeft.addEventListener("click", function() {
-    gererClic(-1)
+    handleClick(-1)
 })
 
 arrowRight.addEventListener("click", function() {
-    gererClic(1)
+    handleClick(1)
 })
 
 // fonction anonyme
@@ -47,11 +73,7 @@ arrowRight.addEventListener("click", function() {
 //    console.log("clic gauche")
 //})
 
-// Générer les bullet points dynamiquement (étape 3)
-// Récupération des éléments
-const dotsContainer = document.querySelector(".dots")
-
-// Génération des dots
+// ── Générer les dots dynamiquement ───────────────────
 for (let i = 0; i < slides.length ; i++) {
   const dot = document.createElement("div")
   dot.classList.add("dot")
